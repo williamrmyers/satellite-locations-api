@@ -28,7 +28,7 @@ app.get('/all/geo/', async (req, res) => {
       return res.status(404).send({});
     }
 
-    res.send({satellites,limit, start: startCursor(limit, start, maxNumberOfSatellites)});
+    res.send({satellites, limit, start: startCursor(limit, start, maxNumberOfSatellites)});
 
   } catch (e) {
     return res.status(404).send({});
@@ -67,12 +67,30 @@ app.get('/satellite/purposes', async (req, res) => {
   }
 });
 
+// Return a list of satellites for one specific purposes
+app.get('/satellite/purpose/', async (req, res) => {
+  const purpose = _.toString(req.query.purpose);
+
+  try {
+    const satellites = await Satellite.find({ "purpose": purpose }, 'names apogee perigee period eccentricity inclination period purpose');
+
+    if (!satellites) {
+      return res.status(404).send({});
+    }
+
+    res.send({satellites});
+
+  } catch (e) {
+    return res.status(404).send({});
+  }
+});
+
 app.listen(port, ()=>{
   console.log(`App started on port ${port}`);
 });
 
 //Future Routes
 
-// Return a list of satellites for one specific purposes
+
 
 // Get All data for a Sateltite by ID.

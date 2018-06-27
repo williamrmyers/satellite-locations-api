@@ -46,6 +46,11 @@ const Satellite = mongoose.model('Satellite', {
     type: String,
     required: true,
     trim: true
+  },
+  purpose: {
+    type: String,
+    required: true,
+    trim: true
   }
 });
 
