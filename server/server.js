@@ -4,6 +4,7 @@ const express = require('express');
 const _ = require('lodash');
 const R = require('ramda');
 const bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
 const {mongoose} = require('./db/mongoose');
 const {Satellite} = require('./models/satellite')
@@ -14,11 +15,17 @@ app.use(bodyParser.json());
 
 const maxNumberOfSatellites = 1738;
 
+// Helper functions
+const isString = _.curry(
+  _.trim,
+  _.toString
+);
+// Returns the start object if less than the max otherwise returns null
+const startCursor = (limit, start, max) => max >= limit + start? limit + start : null;
+
 app.get('/all/geo/', async (req, res) => {
   const limit = _.toNumber(req.query.limit);
   const start = _.toNumber(req.query.start);
-  // Returns the start object if less than the max otherwise returns null
-  const startCursor = (limit, start, max) => max >= limit + start? {"limit": limit + start} : null;
   try {
     const satellites = await Satellite.find({}, 'names apogee perigee period eccentricity inclination period')
     .skip(start)
@@ -43,7 +50,7 @@ app.get('/all/geo', async (req, res) => {
       return res.status(404).send({});
     }
 
-    res.send({});
+    res.send({satellites});
 
   } catch (e) {
     return res.status(404).send({});
@@ -69,7 +76,7 @@ app.get('/satellite/purposes', async (req, res) => {
 
 // Return a list of satellites for one specific purposes
 app.get('/satellite/purpose/', async (req, res) => {
-  const purpose = _.toString(req.query.purpose);
+  const purpose = isString(req.query.purpose);
 
   try {
     const satellites = await Satellite.find({ "purpose": purpose }, 'names apogee perigee period eccentricity inclination period purpose');
@@ -85,12 +92,24 @@ app.get('/satellite/purpose/', async (req, res) => {
   }
 });
 
+// Get All data for a Sateltite by ID.
+
+app.get('/satellite', async (req, res) => {
+  const id = req.query.id;
+  try {
+    const satellites = await Satellite.findOne({_id: id});
+
+    if (!satellites && !ObjectID.isValid(id)) {
+      return res.status(404).send({});
+    }
+
+    res.send({satellites});
+
+  } catch (e) {
+    return res.status(404).send({});
+  }
+});
+
 app.listen(port, ()=>{
   console.log(`App started on port ${port}`);
 });
-
-//Future Routes
-
-
-
-// Get All data for a Sateltite by ID.
