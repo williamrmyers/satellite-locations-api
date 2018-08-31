@@ -46,12 +46,12 @@ app.get('/all/geo/', async (req, res) => {
  * @api {get} /all/geo Get all data with Geographic data
  * @apiName Get Satellite Location API
  * @apiVersion 1.0.0
- * @apiGroup All Data
+ * @apiGroup Main
  * @apiSampleRequest https://satellite-locations-api.herokuapp.com/all/geo/
  * @apiDescription Fetch a list of all of satallites alphabetically
  *
- * @apiParam {String} limit The Number of Satellite to return at a time
- * @apiParam {String} start The Pagination Start Point
+ * @apiParam (Pagination Parameters) {Number} limit The Number of Satellite to return at a time
+ * @apiParam (Pagination Parameters) {Number} start The Pagination Start Point
  *
  * @apiExample Example usage:
  * curl -X GET 'https://satellite-locations-api.herokuapp.com/all/geo/?limit=10&start=40'
@@ -89,10 +89,10 @@ app.get('/all/geo', async (req, res) => {
  * @apiSampleRequest https://satellite-locations-api.herokuapp.com/satellite/purposes
  *
  * @apiExample Example usage:
- * curl -i https://satellite-locations-api.herokuapp.com/satellite/purposes
+ * curl -i 'https://satellite-locations-api.herokuapp.com/satellite/purposes'
  *
- * @apiSuccess {String} _id Technology Development,
- * @apiSuccess {String} total 179,
+ * @apiSuccess {String} _id Name of Satallites Purpose
+ * @apiSuccess {String} total Number of Satallites with that Purpose
  *
  */
 
@@ -114,15 +114,15 @@ app.get('/satellite/purposes', async (req, res) => {
 });
 
 /**
- * @api {get} /satellite/purpose/ Return a list of satellites for one specific purposes
+ * @api {get} /satellite/purpose/ Get a Satellites Purpose
  * @apiName Satellite Purpose
  * @apiVersion 1.0.0
  * @apiGroup Satellite Purposes
  * @apiSampleRequest https://satellite-locations-api.herokuapp.com/satellite/purpose
  *
- * @apiParam {String} purpose Name of the Satellite Purpose.
+ * @apiParam (Satellite Purpose) {String} purpose Name of the Satellite Purpose.
  * @apiExample Example usage:
- * curl -i https://satellite-locations-api.herokuapp.com/satellite/purpose
+ * curl -i 'https://satellite-locations-api.herokuapp.com/satellite/purpose'
  *
  *
  */
@@ -144,6 +144,20 @@ app.get('/satellite/purpose/', async (req, res) => {
     return res.status(404).send({});
   }
 });
+
+/**
+ * @api {get} /satellite/ Get Satellites by ID
+ * @apiName Satellite by ID
+ * @apiVersion 1.0.0
+ * @apiGroup Satellite By ID
+ * @apiSampleRequest https://satellite-locations-api.herokuapp.com/satellite/
+ *
+ * @apiParam (id) {String} id id of a satellite
+ * @apiExample Example usage:
+ * curl -i 'https://satellite-locations-api.herokuapp.com/satellite?id=5b315c28798831a00e6b404b'
+ *
+ *
+ */
 
 // Get All data for a Sateltite by ID.
 

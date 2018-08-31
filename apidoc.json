@@ -2,7 +2,15 @@
 "name": "Satellite Locations API",
 "version": "1.0.0",
 "description": "API for pulling satellite data",
+"url" : "https://satellite-locations-api.herokuapp.com",
 "template": {
-"forceLanguage": "en"
-}
+  "forceLanguage": "en"
+  },
+  "header": {
+    "title": "Satellite Locations API",
+    "filename": "markdown/header.md"
+  },
+  "footer": {
+    "filename": "markdown/header.md"
+  }
 }
