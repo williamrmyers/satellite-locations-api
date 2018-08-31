@@ -2,6 +2,4 @@ This is an example API I've written to pull the location data of orbiting satell
 
 The code is located on my [Github page](https://github.com/williamrmyers/satellite-locations-api).
 
-[Email me here](mailto:williamrmyers@gmail.com) if you have any questions.
-
-Connect on [Linkedin](https://www.linkedin.com/in/william-myers-1a53b259/).
+[Email me](mailto:williamrmyers@gmail.com) if you have any questions. Connect on [Linkedin](https://www.linkedin.com/in/william-myers-1a53b259/).

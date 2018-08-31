@@ -5,6 +5,7 @@ const _ = require('lodash');
 const R = require('ramda');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
+const path = require('path');
 
 const {mongoose} = require('./db/mongoose');
 const {Satellite} = require('./models/satellite')
@@ -88,6 +89,8 @@ app.get('/all/geo', async (req, res) => {
  * @apiGroup Satellite Purposes
  * @apiSampleRequest https://satellite-locations-api.herokuapp.com/satellite/purposes
  *
+ * @apiDescription Fetch a list of all of the `purposes` for all satallites.
+ *
  * @apiExample Example usage:
  * curl -i 'https://satellite-locations-api.herokuapp.com/satellite/purposes'
  *
@@ -120,6 +123,8 @@ app.get('/satellite/purposes', async (req, res) => {
  * @apiGroup Satellite Purposes
  * @apiSampleRequest https://satellite-locations-api.herokuapp.com/satellite/purpose
  *
+ * @apiDescription Fetch all of the satellite for the supplied purpose. Pagination is not enabled for this endpoint.
+ *
  * @apiParam (Satellite Purpose) {String} purpose Name of the Satellite Purpose.
  * @apiExample Example usage:
  * curl -i 'https://satellite-locations-api.herokuapp.com/satellite/purpose'
@@ -128,7 +133,7 @@ app.get('/satellite/purposes', async (req, res) => {
  */
 
 // Return a list of satellites for one specific purposes
-app.get('/satellite/purpose/', async (req, res) => {
+app.get('/satellite/purpose', async (req, res) => {
   const purpose = isString(req.query.purpose);
 
   try {
@@ -151,6 +156,8 @@ app.get('/satellite/purpose/', async (req, res) => {
  * @apiVersion 1.0.0
  * @apiGroup Satellite By ID
  * @apiSampleRequest https://satellite-locations-api.herokuapp.com/satellite/
+ *
+ * @apiDescription Get all of the infomration associated with a single satellite.
  *
  * @apiParam (id) {String} id id of a satellite
  * @apiExample Example usage:
@@ -176,6 +183,10 @@ app.get('/satellite', async (req, res) => {
     return res.status(404).send({});
   }
 });
+
+// Serve the documentation
+const publicPath = path.join(__dirname, '../documentation');
+app.use('/documentation', express.static(publicPath))
 
 app.listen(port, ()=>{
   console.log(`App started on port ${port}`);
