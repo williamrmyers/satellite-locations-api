@@ -5,12 +5,12 @@
 "url" : "https://satellite-locations-api.herokuapp.com",
 "template": {
   "forceLanguage": "en"
-  },
-  "header": {
-    "title": "Satellite Locations API",
-    "filename": "markdown/header.md"
-  },
-  "footer": {
-    "filename": "markdown/footer.md"
-  }
+},
+"header": {
+  "title": "Satellite Locations API",
+  "filename": "markdown/header.md"
+},
+"footer": {
+  "filename": "markdown/footer.md"
+}
 }

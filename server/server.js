@@ -44,10 +44,10 @@ app.get('/all/geo/', async (req, res) => {
 });
 
 /**
- * @api {get} /all/geo Get all data with Geographic data
+ * @api {get} /all/geo Get all satellite data
  * @apiName Get Satellite Location API
  * @apiVersion 1.0.0
- * @apiGroup Main
+ * @apiGroup All Data
  * @apiSampleRequest https://satellite-locations-api.herokuapp.com/all/geo/
  * @apiDescription Fetch a list of all of satallites alphabetically
  *
