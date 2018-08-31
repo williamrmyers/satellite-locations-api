@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "apidoc -i . -f \".*\\.js$\" -e \"node_modules/\" -o \"./documentation/\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apidoc": "^0.17.6",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
