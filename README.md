@@ -25,7 +25,7 @@ npm install
 #### To Start
 
 ```
-npm start
+npm run dev
 ```
 
 #### To build the documentation run
@@ -33,4 +33,4 @@ npm start
 apidoc -f \".*\.js$\" -e "node_modules/" -o "documentation/"
 ```
 
-#### Test the documentation Live here. [Full Documentation](https://satellite-locations-api.herokuapp.com/documentation/) 
+#### Test the documentation Live here. [Full Documentation](https://satellite-locations-api.herokuapp.com/documentation/)

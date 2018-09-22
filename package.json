@@ -7,6 +7,7 @@
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "apidoc -i . -f \".*\\.js$\" -e \"node_modules/\" -o \"./documentation/\" && nodemon server/server.js",
     "heroku-postbuild": "apidoc -i . -f \".*\\.js$\" -e \"node_modules/\" -o \"./documentation/\""
   },
   "author": "",

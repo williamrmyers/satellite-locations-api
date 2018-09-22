@@ -166,7 +166,7 @@ app.get('/satellite/purpose', async (req, res) => {
  *
  */
 
-// Get All data for a Sateltite by ID.
+// Get All data for a Satelltite by ID.
 
 app.get('/satellite', async (req, res) => {
   const id = req.query.id;
@@ -183,6 +183,8 @@ app.get('/satellite', async (req, res) => {
     return res.status(404).send({});
   }
 });
+
+// SEARCH BY Satellite Name
 
 // Serve the documentation
 const publicPath = path.join(__dirname, '../documentation');
