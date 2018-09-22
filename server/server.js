@@ -193,3 +193,6 @@ app.use('/documentation', express.static(publicPath))
 app.listen(port, ()=>{
   console.log(`App started on port ${port}`);
 });
+
+
+module.exports = app;
